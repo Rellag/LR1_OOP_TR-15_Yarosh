@@ -1,4 +1,6 @@
 ﻿using System;
+
+
 namespace test
 {
     public class GameAccount
@@ -34,15 +36,12 @@ namespace test
             opponentName.CurrentRating -= Rating;
             opponentName.GamesCount++;
 
-            Console.WriteLine(UserName + " " + CurrentRating + " (+ {0}) " + "WON" + " " +
-                opponentName.UserName + " " + opponentName.CurrentRating + " (- {1})", Rating, Rating);
+            PrintWin(opponentName, Rating);
 
 
-            TheStat.AddFirst(new Stat(Rating, UserName, opponentName.UserName, CurrentRating, opponentName.CurrentRating));
-            opponentName.TheStat.AddFirst(new Stat(Rating, UserName, opponentName.UserName, CurrentRating, opponentName.CurrentRating));
-            Stat.ManeStat.AddFirst(new Stat(Rating, UserName, opponentName.UserName, CurrentRating, opponentName.CurrentRating));
-
-            Stat.seedIndex++;
+            AddToStatWin(opponentName, Rating);
+            
+            
         }
 
         public void LoseGame(GameAccount opponentName, int Rating)
@@ -64,15 +63,38 @@ namespace test
             opponentName.GamesCount++;
 
 
-            Console.WriteLine(UserName + " " + CurrentRating + " (- {0}) " + "LOST"  + " " +
-                opponentName.UserName + " " + opponentName.CurrentRating + " (+ {1})", Rating, Rating);
+            PrintLose(opponentName, Rating);
 
+            AddToStatLose(opponentName, Rating);
+            
+        }
 
-            TheStat.AddFirst(new Stat(Rating, opponentName.UserName, UserName, opponentName.CurrentRating, CurrentRating));
-            opponentName.TheStat.AddFirst(new Stat(Rating, opponentName.UserName, UserName, opponentName.CurrentRating, CurrentRating));
+        private void AddToStatLose(GameAccount opponentName, int Rating)
+        {
             Stat.ManeStat.AddFirst(new Stat(Rating, opponentName.UserName, UserName, opponentName.CurrentRating, CurrentRating));
 
             Stat.seedIndex++;
+
+        }
+
+        private void AddToStatWin(GameAccount opponentName, int Rating)
+        {
+            Stat.ManeStat.AddFirst(new Stat(Rating, UserName, opponentName.UserName, CurrentRating, opponentName.CurrentRating));
+
+            Stat.seedIndex++;
+
+        }
+
+        private void PrintLose(GameAccount opponentName, int Rating)
+        {
+            Console.WriteLine(UserName + " " + CurrentRating + " (- {0}) " + "LOST" + " " +
+                opponentName.UserName + " " + opponentName.CurrentRating + " (+ {1})", Rating, Rating);
+        }
+
+        private void PrintWin(GameAccount opponentName, int Rating)
+        {
+            Console.WriteLine(UserName + " " + CurrentRating + " (+ {0}) " + "WON" + " " +
+                 opponentName.UserName + " " + opponentName.CurrentRating + " (- {1})", Rating, Rating);
         }
 
         LinkedList<Stat> TheStat = new LinkedList<Stat> { };
@@ -127,6 +149,20 @@ namespace test
                     item.looser, item.looserRating);
             }
 
+        }
+
+        public static void GetStats(GameAccount gameAccount)
+        {
+            Console.WriteLine("\nStats of {0}:", gameAccount.UserName);
+            foreach (var item in ManeStat)
+            {
+                if (gameAccount.UserName.Equals(item.winner) || gameAccount.UserName.Equals(item.looser))
+                {
+                    Console.WriteLine("Game index: {0}, Game Rating: {1}, Winner: {2} {3} (+ {1})," +
+                        " Looser: {4} {5}(- {1})", item.index, item.Rating, item.winner, item.winnerRating,
+                        item.looser, item.looserRating);
+                }
+            }
         }
     }
 

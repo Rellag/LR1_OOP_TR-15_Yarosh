@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/vladinin/Projects/test/test/test.csproj",
+      "projectUniqueName": "/Users/vladinin/Documents/GitHub/LR1_OOP_TR-15_Yarosh/test/test/test.csproj",
       "projectName": "test",
-      "projectPath": "/Users/vladinin/Projects/test/test/test.csproj",
+      "projectPath": "/Users/vladinin/Documents/GitHub/LR1_OOP_TR-15_Yarosh/test/test/test.csproj",
       "packagesPath": "/Users/vladinin/.nuget/packages/",
-      "outputPath": "/Users/vladinin/Projects/test/test/obj/",
+      "outputPath": "/Users/vladinin/Documents/GitHub/LR1_OOP_TR-15_Yarosh/test/test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/vladinin/.nuget/NuGet/NuGet.Config"

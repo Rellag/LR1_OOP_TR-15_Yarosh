@@ -20,8 +20,6 @@ Alex.LoseGame(Vlad, 150);
 
 Ilysha.LoseGame(Alex, 26);
 
-Vlad.GetStats();
-
-Alex.GetStats();
-
 Stat.GetStats();
+
+Stat.GetStats(Vlad);
